@@ -4,13 +4,18 @@ debug.log("Started");
 
 var PORT = 5000;
 
+
 var express = require('express');
+var cors = require('cors');
+
 var app = express();
 var server = require("http").createServer(app);
 
 // Einstellungen für den Express Webserver
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({origin: '*'}));
+
 
 app.use(function(req, res, next) {
   // Damit wir eine Variable haben wo wir spaeter rein schreiben können

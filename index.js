@@ -7,6 +7,7 @@ var PORT = 5000;
 
 var express = require('express');
 var cors = require('cors');
+var path = require('path');
 
 var app = express();
 var server = require("http").createServer(app);
@@ -21,9 +22,12 @@ app.use(function(req, res, next) {
   // Damit wir eine Variable haben wo wir spaeter rein schreiben können
   if (typeof(req.custom_data) == "undefined") {req.custom_data={};}
 
-  //debug.log("Request: " + req.url);
+  debug.log("Request: " + req.url);
   next();
 });
+
+// Static File Routen
+app.use('/rpg/overlay/', express.static(path.join(__dirname, '../../packages/web-rp-frontend/')));
 
 // Import Routen von Packages
 var RP_API = require("@syth/web-api-rpg");

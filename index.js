@@ -33,6 +33,10 @@ app.use('/rpg/overlay/', express.static(path.join(__dirname, '../../packages/web
 var RP_API = require("@syth/web-api-rpg");
 app.use('/rpg/api/:channel/', RP_API);
 
+// Import Routen von Github Hooks
+var GIT_WEBHOOKS = require("@istani/web-hook-github");
+app.use('/hooks/git/', GIT_WEBHOOKS);
+
 // Routen des Express Webserver
 app.get('*', (req, res) => {
   res.send({ error: 'Wrong URL' });
